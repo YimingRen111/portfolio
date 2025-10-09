@@ -61,7 +61,7 @@ const ContactPage = () => {
         <div className="flex flex-col gap-6 rounded-3xl border border-white/12 bg-gradient-to-br from-white/10 to-white/5 p-8 text-left text-white/75 backdrop-blur-xl">
           <h2 className="text-sm uppercase tracking-[0.3em] text-white/60">Start a conversation</h2>
           {contactChannels.map((channel) => (
-            <div
+            <a
               key={channel.label}
               href={channel.href}
               target={channel.href.startsWith('http') ? '_blank' : undefined}
@@ -71,7 +71,7 @@ const ContactPage = () => {
               <span className="text-xs uppercase tracking-[0.3em] text-white/60">{channel.label}</span>
               <span className="text-lg font-medium text-white">{channel.value}</span>
               <span className="text-xs text-white/60">{channel.description}</span>
-            </div>
+            </a>
           ))}
         </div>
 
