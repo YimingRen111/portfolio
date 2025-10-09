@@ -9,11 +9,18 @@ export const metadata: Metadata = {
   title: 'Yiming Ren • Portfolio',
   description: 'Software Engineer • Frontend • Backend • ML',
   metadataBase: new URL('https://example.com'),
-  openGraph: { title: 'Yiming Ren • Portfolio', description: 'Software Engineer • Frontend • Backend • ML', images: ['/og.jpg'] },
+  openGraph: {
+    title: 'Yiming Ren • Portfolio',
+    description: 'Software Engineer • Frontend • Backend • ML',
+    images: ['/og.jpg'],
+  },
   icons: {
-    icon: '/avatar_ss.png'
-  }
+    icon: [
+      { url: '/avatar_ss.png', rel: 'icon', type: 'image/png', sizes: '32x32' },
+    ],
+  },
 };
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
