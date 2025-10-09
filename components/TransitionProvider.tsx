@@ -124,8 +124,9 @@ const TransitionProvider = ({ children }: { children: ReactNode }) => {
       preTimerRef.current = window.setTimeout(() => setPhase('blast'), 1500);
 
       const routeDelay = Math.max(0, options?.delay ?? 1500);
+      const targetRoute = options.route;
       transitionTimeoutRef.current = window.setTimeout(() => {
-        router.push(options.route);
+        router.push(targetRoute);
       }, routeDelay);
     },
     [router, sceneState],

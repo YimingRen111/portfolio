@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext } from 'react';
+import type { Route } from 'next';
 
 export type SceneState = 'home' | 'about' | 'projects' | 'contact';
 
@@ -16,7 +17,13 @@ export type SceneControllerValue = {
   sceneState: SceneState;
   metrics: SceneMetrics;
   phase: TransitionPhase;
-  transitionTo: (scene: SceneState, options?: { route?: string; delay?: number }) => void;
+  transitionTo: (
+    scene: SceneState,
+    options?: {
+      route?: Route;
+      delay?: number;
+    },
+  ) => void;
   updateMetrics: (partial: Partial<SceneMetrics>) => void;
 };
 
@@ -35,3 +42,4 @@ export const SceneControllerContext = createContext<SceneControllerValue>({
 });
 
 export const useSceneController = () => useContext(SceneControllerContext);
+
