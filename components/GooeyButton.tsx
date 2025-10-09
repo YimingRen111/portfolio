@@ -1,11 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ButtonHTMLAttributes } from 'react';
+import type { ComponentProps } from 'react';
 
-type GooeyButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  children: React.ReactNode;
-};
+type GooeyButtonProps = ComponentProps<typeof motion.button>;
 
 /**
  * Liquid-styled button using SVG gooey filter and motion hover.
