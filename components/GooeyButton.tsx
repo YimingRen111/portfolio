@@ -3,7 +3,11 @@
 import { motion } from 'framer-motion';
 import type { ComponentProps } from 'react';
 
-type GooeyButtonProps = ComponentProps<typeof motion.button>;
+type MotionButtonProps = ComponentProps<typeof motion.button>;
+
+type GooeyButtonProps = Omit<MotionButtonProps, 'children'> & {
+  children?: React.ReactNode;
+};
 
 /**
  * Liquid-styled button using SVG gooey filter and motion hover.
@@ -40,7 +44,7 @@ const GooeyButton = ({ children, className = '', ...props }: GooeyButtonProps) =
             background: 'linear-gradient(135deg, rgba(99,102,241,0.9), rgba(139,92,246,0.9))',
           }}
         />
-        {children}
+        {children ?? null}
       </motion.button>
     </div>
   );
