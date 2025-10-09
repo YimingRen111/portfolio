@@ -225,7 +225,9 @@ const InteractiveScene = () => {
 
     // Glitch sticks (reduced population)
     const glitchGeometry = new THREE.InstancedBufferGeometry();
-    glitchGeometry.copy(new THREE.BoxGeometry(0.06, 0.06, 0.8));
+    const boxGeometry = new THREE.BoxGeometry(0.06, 0.06, 0.8);
+    glitchGeometry.copy(boxGeometry as unknown as THREE.InstancedBufferGeometry);
+    boxGeometry.dispose();
     const glitchCount = 50;
     const glitchOffsets = new Float32Array(glitchCount * 3);
     const glitchOrientations = new Float32Array(glitchCount * 3);
