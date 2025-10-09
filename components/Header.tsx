@@ -2,28 +2,32 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import type { MouseEvent } from 'react';
+import { useCallback } from 'react';
+import type { Route } from 'next';
 import { useSceneController } from '@/lib/scene-controller';
-import { MouseEvent, useCallback } from 'react';
 
 const navLinks = [
-  { href: '/', label: 'Home', scene: 'home' as const },
-  { href: '/projects', label: 'Projects', scene: 'projects' as const },
-  { href: '/about', label: 'About', scene: 'about' as const },
-  { href: '/contact', label: 'Contact', scene: 'contact' as const },
-];
+  { href: '/' satisfies Route, label: 'Home', scene: 'home' as const },
+  { href: '/projects' satisfies Route, label: 'Projects', scene: 'projects' as const },
+  { href: '/about' satisfies Route, label: 'About', scene: 'about' as const },
+  { href: '/contact' satisfies Route, label: 'Contact', scene: 'contact' as const },
+] as const;
 
 export default function Header() {
   const pathname = usePathname();
   const { transitionTo } = useSceneController();
 
   const handleNav = useCallback(
-    (event: MouseEvent<HTMLAnchorElement>, href: string, scene: typeof navLinks[number]['scene']) => {
+    (event: MouseEvent<HTMLAnchorElement>, href: Route, scene: typeof navLinks[number]['scene']) => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
       event.preventDefault();
+
       if (pathname === href) {
         transitionTo(scene);
         return;
       }
+
       transitionTo(scene, { route: href });
     },
     [pathname, transitionTo],
