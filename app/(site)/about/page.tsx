@@ -121,18 +121,18 @@ const AboutPage = () => {
         </motion.section>
 
         <motion.section
-          className="grid gap-6 md:grid-cols-[1fr_1.3fr]"
+          className="grid gap-6 md:grid-cols-[1fr_1.3fr] "
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3, duration: 1, ease: [0.2, 0.9, 0.2, 1] }}
         >
-          <div className="rounded-3xl border border-white/12 bg-gradient-to-b from-white/10 to-white/5 p-6 text-white/75 backdrop-blur-xl">
-            <h3 className="text-sm uppercase tracking-[0.3em] text-white/60">现在</h3>
-            <p className="mt-4 text-balance text-lg font-medium text-white">
-              站在创意和工程的交汇点，把复杂的系统与细腻的情感融合成一体。
+          <div className="rounded-3xl border border-white/12 bg-gradient-to-b from-white/10 to-white/5 p-6 text-white/75 backdrop-blur-xl space-y-4">
+            <h3 className="text-sm uppercase tracking-[0.3em] text-white/60">Now</h3>
+            <p className="text-balance text-lg font-medium text-white">
+              I live where technical rigor meets poetic storytelling—turning curiosity into shared digital spaces.
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-white/70">
-              与创始人、设计师并肩作战——快速迭代、量化结果、寻找最具沉浸感的表达。
+            <p className="text-sm leading-relaxed text-white/70">
+              I partner with founders, designers, and researchers to move from exploration to measurable results. In a world accelerated by the internet and AI, I’m intent on leaving a thoughtful trace—using human insight, emotion, and craft to make products people feel.
             </p>
           </div>
           <div className="space-y-4">
@@ -157,7 +157,7 @@ const AboutPage = () => {
             ))}
           </div>
         </motion.section>
-
+        <div className="mt-10 h-px bg-white/10" />
         {/* Education */}
         <motion.section
           className="grid gap-6 md:grid-cols-2"
@@ -215,6 +215,29 @@ const AboutPage = () => {
               <li>Soft skills: clear technical communication, analytical problem‑solving, collaborative teamwork, mentoring juniors, stakeholder presentations.</li>
             </ul>
           </div>
+        </motion.section>
+        
+        <div className="mt-10 h-px bg-white/10" />
+        <motion.section
+          className="rounded-3xl border border-white/12 bg-gradient-to-br from-white/8 via-white/4 to-white/8 p-6 text-white/75 backdrop-blur-xl"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.75, duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
+        >
+          <h3 className="text-sm uppercase tracking-[0.3em] text-white/60">Personal Signals</h3>
+          <p className="mt-4 text-sm leading-relaxed text-white/70">
+            Beijing native, fluent in Mandarin and English, INTP by wiring. I recharge by chasing beautifully crafted worlds—be it{' '}
+            <span className="text-white/80">Cyberpunk: Edgerunners</span>,{' '}
+            <span className="text-white/80">Kingdom Come</span>, or a Rusty Lake puzzle—then reverse-engineering how they evoke wonder.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-white/70">
+            Fingerstyle guitarist Kotaro Oshio taught me about rhythm and negative space; storytellers like{' '}
+            <span className="text-white/80">Better Call Saul</span>,{' '}
+            <span className="text-white/80">Billie Eilish</span>,{' '}
+            <span className="text-white/80">Frank Ocean</span>, and{' '}
+            <span className="text-white/80">Attack on Titan</span> remind me that emotional resonance beats spectacle.
+            I build products with that same intention—human, curious, and a little cosmic.
+          </p>
         </motion.section>
       </motion.div>
     </main>

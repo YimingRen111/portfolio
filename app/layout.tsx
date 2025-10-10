@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Yiming Ren • Portfolio',
     description: 'Software Engineer • Frontend • Backend • ML',
-    images: ['/og.jpg'],
+    images: ['/avatar.png'],
   },
   icons: {
     icon: [

@@ -83,10 +83,10 @@ const ContactPage = () => {
         >
           <h3 className="text-sm uppercase tracking-[0.3em] text-white/60">Project fit</h3>
           <ul className="mt-4 space-y-3 text-sm leading-relaxed text-white/70">
-            <li>⌁ Seeking a frontend partner across Three.js/WebGL/data-driven storytelling.</li>
-            <li>⌁ Want a distinctive, immersive brand or product narrative.</li>
-            <li>⌁ Need a proof-of-concept for an interaction concept within four weeks.</li>
-            <li>⌁ Looking for long-term collaboration to evolve a living visual system.</li>
+            <li>⌁ Need an immersive WebGL/Three.js experience—pitch decks, product demos, realtime dashboards.</li>
+            <li>⌁ Want senior-level frontend ownership from prototype to launch across Next.js/FastAPI stacks.</li>
+            <li>⌁ Have ML research (TensorFlow/PyTorch) that needs a polished, user-ready interface.</li>
+            <li>⌁ Looking for a long-term partner to ship data-driven, interactive products with measurable impact.</li>
           </ul>
         </motion.div>
       </motion.section>

@@ -23,6 +23,7 @@ const projects: Project[] = [
     year: 2022,
     period: 'Mar – Jun 2022',
     stack: 'Django REST, React/Redux, Bootstrap',
+    link: 'https://github.com/YimingRen111/Bookmania',
   },
   {
     title: '“King of Bots” Game Platform',
@@ -32,6 +33,7 @@ const projects: Project[] = [
     year: 2023,
     period: 'Aug – Nov 2023',
     stack: 'Spring Boot, Vue.js, MySQL, WebSocket',
+    link: 'https://github.com/YimingRen111/King-Of-Bots',
   },
   {
     title: 'ECG ↔ PPG Reconstruction',
@@ -58,6 +60,7 @@ const projects: Project[] = [
     role: 'Thesis Project',
     year: 2024,
     stack: 'PyTorch, Diffusion',
+    link: 'https://github.com/YimingRen111/Diffusion-Models-for-Bone-Suppression-from-Chest-X-ray-Images',
   },
   {
     title: 'Campus Tutor Web App',
@@ -67,6 +70,7 @@ const projects: Project[] = [
     year: 2024,
     period: 'Aug – Nov 2024',
     stack: 'FastAPI, React, Docker, PostgreSQL, OpenAI API',
+    link: 'https://github.com/YimingRen111/LLM-Agent-Ed-System',
   },
   {
     title: 'Low‑Light Enhancement for Surgical Videos',
@@ -75,6 +79,7 @@ const projects: Project[] = [
     role: 'Thesis Project',
     year: 2025,
     stack: 'PyTorch, BasicSR, DDPM, 3D CNN',
+    link: 'https://github.com/YimingRen111/Low-Light-Enhancement-for-Surgical-Videos',
   },
 ];
 
@@ -118,7 +123,7 @@ const ProjectsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.3, duration: 1, ease: [0.2, 0.9, 0.2, 1] }}
       >
-        {projects.map((project, index) => (
+        {[...projects].reverse().map((project, index) => (
           <motion.article
             key={project.title}
             className="group relative overflow-hidden rounded-3xl border border-white/12 bg-white/5 p-6 text-white/75 backdrop-blur-xl transition duration-500 hover:border-white/30 hover:bg-white/8"

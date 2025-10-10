@@ -133,7 +133,7 @@ const InteractiveScene = () => {
     scene.add(rimLight);
 
     const noise = new SimplexNoise();
-    const coreGeometry = new THREE.IcosahedronGeometry(3.2, 4);
+    const coreGeometry = new THREE.IcosahedronGeometry(2.5, 3);
     const coreMaterial = new THREE.MeshPhysicalMaterial({
       color: initialPalette.base.clone(),
       roughness: initialPalette.roughness,
