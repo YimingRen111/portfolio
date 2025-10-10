@@ -121,9 +121,9 @@ const TransitionProvider = ({ children }: { children: ReactNode }) => {
       if (preTimerRef.current) window.clearTimeout(preTimerRef.current);
       if (transitionTimeoutRef.current) window.clearTimeout(transitionTimeoutRef.current);
 
-      preTimerRef.current = window.setTimeout(() => setPhase('blast'), 1500);
+      preTimerRef.current = window.setTimeout(() => setPhase('blast'), 800);
 
-      const routeDelay = Math.max(0, options?.delay ?? 1500);
+      const routeDelay = Math.max(0, options?.delay ?? 700);
       const targetRoute = options.route;
       transitionTimeoutRef.current = window.setTimeout(() => {
         router.push(targetRoute);

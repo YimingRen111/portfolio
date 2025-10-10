@@ -387,10 +387,10 @@ const InteractiveScene = () => {
       cameraBaseTemp.y += -pointer.y * influence * 0.6;
       cameraBaseTemp.z -= pointer.y * 0.8;
       if (phaseNow === 'pre') {
-        const j = 0.14;
-        cameraBaseTemp.x += Math.sin(elapsed * 28) * j;
-        cameraBaseTemp.y += Math.cos(elapsed * 24) * j * 0.9;
-        cameraBaseTemp.z += Math.sin(elapsed * 20) * j * 0.5;
+        const j = 0.04;
+        cameraBaseTemp.x += Math.sin(elapsed * 56) * j;
+        cameraBaseTemp.y += Math.cos(elapsed * 48) * j * 0.9;
+        cameraBaseTemp.z += Math.sin(elapsed * 40) * j * 0.5;
       }
       targetCameraPosition.lerp(cameraBaseTemp, 0.08);
       camera.position.lerp(targetCameraPosition, 0.1);
@@ -398,9 +398,9 @@ const InteractiveScene = () => {
       lookAtTemp.x += pointer.x * 0.2;
       lookAtTemp.y += -pointer.y * 0.2;
       if (phaseNow === 'pre') {
-        const lj = 0.08;
-        lookAtTemp.x += Math.sin(elapsed * 18) * lj;
-        lookAtTemp.y += Math.cos(elapsed * 16) * lj * 0.8;
+        const lj = 0.04;
+        lookAtTemp.x += Math.sin(elapsed * 36) * lj;
+        lookAtTemp.y += Math.cos(elapsed * 32) * lj * 0.8;
       }
       camera.lookAt(lookAtTemp);
 
