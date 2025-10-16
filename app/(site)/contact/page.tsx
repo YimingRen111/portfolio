@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSceneController } from '@/lib/scene-controller';
 
@@ -75,22 +75,135 @@ const ContactPage = () => {
           ))}
         </div>
 
-        <motion.div
-          className="rounded-3xl border border-white/12 bg-white/4 p-8 text-left text-white/75 backdrop-blur-xl"
-          initial={{ opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.3, duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-        >
-          <h3 className="text-sm uppercase tracking-[0.3em] text-white/60">Project fit</h3>
-          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-white/70">
-            <li>⌁ Need an immersive WebGL/Three.js experience—pitch decks, product demos, realtime dashboards.</li>
-            <li>⌁ Want senior-level frontend ownership from prototype to launch across Next.js/FastAPI stacks.</li>
-            <li>⌁ Have ML research (TensorFlow/PyTorch) that needs a polished, user-ready interface.</li>
-            <li>⌁ Looking for a long-term partner to ship data-driven, interactive products with measurable impact.</li>
-          </ul>
-        </motion.div>
+        <ContactForm />
       </motion.section>
     </main>
+  );
+};
+
+const ContactForm = () => {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!formState.name || !formState.email || !formState.message) {
+      setErrorMessage('Please complete all fields before sending your message.');
+      setStatus('error');
+      return;
+    }
+
+    setStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/renyiming7@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message.');
+      }
+
+      setFormState({ name: '', email: '', message: '' });
+      setStatus('success');
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong while sending your message. Please try again later.'
+      );
+    }
+  };
+
+  return (
+    <motion.form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-6 rounded-3xl border border-white/12 bg-white/4 p-8 text-left text-white/75 backdrop-blur-xl"
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 1.3, duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+    >
+      <div className="flex flex-col gap-2">
+        <h3 className="text-sm uppercase tracking-[0.3em] text-white/60">Send a message</h3>
+        <p className="text-sm text-white/60">
+          Share a little about yourself and how I can help. You’ll receive a reply directly at the email you provide.
+        </p>
+      </div>
+
+      <label className="flex flex-col gap-2 text-sm text-white/70">
+        Name
+        <input
+          type="text"
+          name="name"
+          value={formState.name}
+          onChange={(event) => setFormState((previous) => ({ ...previous, name: event.target.value }))}
+          className="rounded-2xl border border-white/15 bg-black/20 px-4 py-3 text-base text-white placeholder-white/40 outline-none transition focus:border-white/40 focus:bg-black/30"
+          placeholder="Your name"
+          required
+        />
+      </label>
+
+      <label className="flex flex-col gap-2 text-sm text-white/70">
+        Email
+        <input
+          type="email"
+          name="email"
+          value={formState.email}
+          onChange={(event) => setFormState((previous) => ({ ...previous, email: event.target.value }))}
+          className="rounded-2xl border border-white/15 bg-black/20 px-4 py-3 text-base text-white placeholder-white/40 outline-none transition focus:border-white/40 focus:bg-black/30"
+          placeholder="you@example.com"
+          required
+        />
+      </label>
+
+      <label className="flex flex-col gap-2 text-sm text-white/70">
+        Message
+        <textarea
+          name="message"
+          value={formState.message}
+          onChange={(event) => setFormState((previous) => ({ ...previous, message: event.target.value }))}
+          className="min-h-[140px] rounded-2xl border border-white/15 bg-black/20 px-4 py-3 text-base text-white placeholder-white/40 outline-none transition focus:border-white/40 focus:bg-black/30"
+          placeholder="How can I help?"
+          required
+        />
+      </label>
+
+      <button
+        type="submit"
+        className="inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70 disabled:cursor-not-allowed disabled:bg-white/30 disabled:text-white/50"
+        disabled={status === 'submitting'}
+      >
+        {status === 'submitting' ? 'Sending…' : 'Send message'}
+      </button>
+
+      {status === 'success' && (
+        <p className="rounded-2xl border border-emerald-400/40 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200">
+          Thanks for reaching out! Your message has been delivered.
+        </p>
+      )}
+
+      {status === 'error' && errorMessage && (
+        <p className="rounded-2xl border border-rose-400/40 bg-rose-400/10 px-4 py-3 text-sm text-rose-200">
+          {errorMessage}
+        </p>
+      )}
+    </motion.form>
   );
 };
 
