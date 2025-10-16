@@ -2,7 +2,9 @@
 
 import { useSceneController } from '@/lib/scene-controller';
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+import Link from 'next/link';
+import type { Route } from 'next';
+import { type MouseEvent, useCallback, useEffect } from 'react';
 
 const subtleTextVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -13,8 +15,20 @@ const subtleTextVariants = {
   }),
 };
 
+const CONTACT_ROUTE = '/contact' as Route;
+
 const HomePage = () => {
   const { transitionTo, updateMetrics } = useSceneController();
+
+  const handleHireMe = useCallback(
+    (event: MouseEvent<HTMLAnchorElement>) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+
+      event.preventDefault();
+      transitionTo('contact', { route: CONTACT_ROUTE });
+    },
+    [transitionTo],
+  );
 
   useEffect(() => {
     const timeout = window.setTimeout(() => {
@@ -27,8 +41,6 @@ const HomePage = () => {
 
     return () => window.clearTimeout(timeout);
   }, [updateMetrics]);
-
-  // CTA buttons removed; navbar handles navigation
 
   return (
     <main className="relative flex flex-col items-center justify-center overflow-hidden px-6 pb-28 pt-28 md:pt-32 lg:px-12 min-h-[80vh]">
@@ -67,7 +79,28 @@ const HomePage = () => {
           Software engineer (USYD MSE ’25) shipping end‑to‑end systems. I focus on modern front‑end experience design and applied machine learning. I prototype quickly, collaborate closely, and ship production‑ready systems—adapting to the problem rather than a fixed stack.
         </motion.p>
 
-        {/* CTA buttons removed to avoid duplication with navbar */}
+        <motion.div
+          className="flex flex-wrap items-center justify-center gap-4"
+          custom={0.75}
+          variants={subtleTextVariants}
+          initial={false}
+        >
+          <a
+            href="/resume.pdf"
+            download
+            className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-xs font-semibold uppercase tracking-[0.32em] text-white transition hover:border-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+          >
+            Download Resume
+          </a>
+          <Link
+            href={CONTACT_ROUTE}
+            prefetch={false}
+            onClick={handleHireMe}
+            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.32em] text-gray-900 transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+          >
+            Hire me
+          </Link>
+        </motion.div>
       </motion.div>
 
       

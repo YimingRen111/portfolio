@@ -8,7 +8,7 @@ import ContentAnimator from '@/components/ContentAnimator';
 export const metadata: Metadata = {
   title: 'Yiming Ren • Portfolio',
   description: 'Software Engineer • Frontend • Backend • ML',
-  metadataBase: new URL('https://example.com'),
+  metadataBase: new URL('https://www.smilingmiles.com'),
   openGraph: {
     title: 'Yiming Ren • Portfolio',
     description: 'Software Engineer • Frontend • Backend • ML',
